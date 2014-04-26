@@ -17,19 +17,22 @@ void test0()
     dag.addDirectedEdge(3,4);
     dag.addDirectedEdge(2,5);
     dag.addDirectedEdge(3,5);
-    //
+
     //Print each vertex and its adjacent verices
-    //
     dag.printDAG();
 
-    vector<unsigned int> vSorted = dag.getTopologicalSortedVertices();
-    cout << endl << "Sorted vertices: ";
-    for (unsigned int j = 0; j < vSorted.size(); j++)
-	cout << vSorted[j] << " ";
-    cout << endl;
+    try
+    {
+	vector<unsigned int> vSorted = dag.getTopologicalSortedVertices();
+ 	cout << endl << "Sorted vertices: ";
+	for (unsigned int j = 0; j < vSorted.size(); j++)
+	    cout << vSorted[j] << " ";
+	cout << endl;
+    }
+    catch (const char* error_msg)
+    { cout << error_msg << endl; }
+    
 }
-
-
 int main()
 {
     test0();
