@@ -26,12 +26,6 @@ private:
     vector<unsigned int> vIndegreeCount;
     
 protected:
-    /* Returns the number of predecessors(indegree) of each vertex in the graph, in order of their
-     *indices i.e. the i-th entry in the vector returned will have the number of predecessors
-     * of vertex i.
-     */
-    vector<unsigned int> getPredecessorCount();
-
     // Returns the adjacent vertices of the ith vertex in the graph.
     vector<unsigned int> getAdjacentVertices(unsigned int i);
     
