@@ -11,31 +11,14 @@ DAG::DAG(unsigned int n)
 
     // Initialize indegree counts.
     vIndegreeCount.assign(numVertices, 0);
-    
-}
-
-vector<unsigned int> DAG::getPredecessorCount()
-{
-    vector<unsigned int> vPredCount;
-    vPredCount.assign(vAdjacencyList.size(), 0);
-    
-    for (unsigned int i = 0; i < vAdjacencyList.size(); ++i)
-    {
-    	//Loop through linked list for each veretx
-    	for (list<unsigned int>::iterator it = vAdjacencyList[i].begin();
-    	     it != vAdjacencyList[i].end(); ++it)
-    	{ ++vPredCount[*it]; }
-    }
-    
-    return vPredCount;
 }
 
 bool DAG::addDirectedEdge(unsigned int i, unsigned int j)
 {
     // TODO
-    // Check if vertices are valid
+    // Check if vertices are valid.
     
-    // Check if the same edge is already present in the list for vertex i
+    // Check if the same edge is already present in the list for vertex i.
     for (list<unsigned int>::iterator it = vAdjacencyList[i].begin();
 	 it != vAdjacencyList[i].end(); ++it)
     {
@@ -43,7 +26,7 @@ bool DAG::addDirectedEdge(unsigned int i, unsigned int j)
 	{ return false; }
     }
 	
-    // Since we ensured no such edge exists, we can now safely add the edge
+    // Since we ensured no such edge exists, we can now safely add the edge.
     vAdjacencyList[i].push_back(j);
 
     // Update indegree count.
@@ -90,7 +73,6 @@ vector<unsigned int> DAG::getTopologicalSortedVertices()
 	vResult.push_back(vertex);
 	indeg_zero.pop();
 
-	
 	// Decrement the indgree count for all vertices adjacent to the vertex we just popped.
 	    for (list<unsigned int>::iterator it = vAdjacencyList[vertex].begin();
 		 it != vAdjacencyList[vertex].end(); ++it)
@@ -104,23 +86,18 @@ vector<unsigned int> DAG::getTopologicalSortedVertices()
 		}
 	    }
 
-
 #ifdef DEBUG
-	    cout<< endl<<"new indgree count"<<endl;
+	    cout << endl<< "new indgree count" << endl;
 	    for (vector<unsigned int>::iterator it = indegrees.begin(); it != indegrees.end(); ++it)
-	    {
-		cout << *it << " ";
-	    }
+	    { cout << *it << " "; }
 	    cout << endl;
 	    
 	    queue<unsigned int> new_queue = indeg_zero;
 	    cout << endl << "new queue: ";
 	    while (!new_queue.empty())
 	    {
-		
 		cout << new_queue.front() << " ";
 		new_queue.pop();
-		
 	    }
 #endif // DEBUG
     }
@@ -140,9 +117,7 @@ void DAG::printDAG()
 	//Loop through linked list for each veretx
 	for (list<unsigned int>::iterator it = vAdjacencyList[i].begin();
 	     it != vAdjacencyList[i].end(); ++it)
-	{
-	    cout << *it << " ";
-	}
+	{ cout << *it << " "; }
 	cout << "| # Indegrees: " << vIndegreeCount[i];
     }
     cout << endl;
