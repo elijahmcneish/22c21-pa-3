@@ -1,4 +1,5 @@
 // #define DEBUG 1
+#include "assert.h"
 #include "DAG.h"
 
 DAG::DAG(unsigned int n)
@@ -15,8 +16,9 @@ DAG::DAG(unsigned int n)
 
 bool DAG::addDirectedEdge(unsigned int i, unsigned int j)
 {
-    // TODO
     // Check if vertices are valid.
+    assert(i <= (numVertices - 1));
+    assert(j <= (numVertices - 1));
     
     // Check if the same edge is already present in the list for vertex i.
     for (list<unsigned int>::iterator it = vAdjacencyList[i].begin();
