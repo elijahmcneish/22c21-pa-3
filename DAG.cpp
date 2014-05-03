@@ -41,9 +41,7 @@ vector<unsigned int> DAG::getAdjacentVertices(unsigned int i)
 {
     vector<unsigned int> vertices;
     for (list<unsigned int>::iterator it = vAdjacencyList[i].begin(); it != vAdjacencyList[i].end(); ++it)
-    {
-    	vertices.push_back(*it);
-    }
+    { vertices.push_back(*it); }
 
     return vertices;
 }
@@ -61,9 +59,8 @@ vector<unsigned int> DAG::getTopologicalSortedVertices()
     for (vector<unsigned int>::iterator it = indegrees.begin(); it != indegrees.end(); ++it)
     {
 	if (*it == 0)
-	{
-	    indeg_zero.push(i);
-	}
+	{ indeg_zero.push(i); }
+
 	++i;
     }
 
@@ -101,7 +98,7 @@ vector<unsigned int> DAG::getTopologicalSortedVertices()
 		cout << new_queue.front() << " ";
 		new_queue.pop();
 	    }
-#endif // DEBUG
+#endif
     }
 
     if (vResult.size() != numVertices)
@@ -115,12 +112,17 @@ void DAG::printDAG()
     cout << endl << "Adjacency List: " << endl;
     for (unsigned int i = 0; i < vAdjacencyList.size(); ++i)
     {
-	cout << endl << "Vertex: " << i << " | Adjacent to: ";
+	cout << endl << "Vertex: " << i << " ";
+#ifdef DEBUG
+	cout<< "| Adjacent to: ";
+#endif
 	//Loop through linked list for each veretx
 	for (list<unsigned int>::iterator it = vAdjacencyList[i].begin();
 	     it != vAdjacencyList[i].end(); ++it)
 	{ cout << *it << " "; }
+#ifdef DEBUG
 	cout << "| # Indegrees: " << vIndegreeCount[i];
+#endif
     }
     cout << endl;
 }
